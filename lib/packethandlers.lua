@@ -183,7 +183,7 @@ packethandlers.HandleIncomingPacket = function(e)
             local status = gFuncs.ColorIt(AshitaCore:GetResourceManager():GetString('buffs.names', am.param_1, gProfileSettings.lang.internal), gProfileColor.statuscol)
             local targ = gFuncs.ColorIt(target.name or '', gProfileColor[target.owner or target.type])
             local number = am.param_2
-            local color = gActionHandlers.ColorFilt(res_actmsg[am.message_id].color, am.target_id==Self.ServerId)
+            local color = gActionHandlers.ColorFilt(res_actmsg[am.message_id].color, Self and am.target_id==Self.ServerId)
             if gProfileSettings.mode.simplify then
                 local msg = gProfileSettings.text.line_noactor
                 :gsub('${abil}',status or '')
@@ -334,7 +334,7 @@ packethandlers.HandleIncomingPacket = function(e)
         local target = GetEntity(AshitaCore:GetMemoryManager():GetTarget():GetTargetIndex(0))
         local target_id = AshitaCore:GetMemoryManager():GetTarget():GetServerId(0)
 
-        if Self.ServerId == struct.unpack('I', e.data, 5) or target_id == struct.unpack('I', e.data, 5) then
+        if Self and (Self.ServerId == struct.unpack('I', e.data, 5) or target_id == struct.unpack('I', e.data, 5)) then
             local crafter_name = (Self.ServerId == struct.unpack('I', e.data, 5) and Self.Name) or target.Name
             local result = e.data:byte(13)
             if result == 0 then

@@ -1,7 +1,7 @@
 
 addon.name      = 'combatlog';
 addon.author    = 'Lydya (from the work of Byrth and Spiken)';
-addon.version   = '0.3.0';
+addon.version   = '0.3.1';
 addon.desc      = 'Combat log Parser based on Simplelog';
 addon.link      = '';
 
